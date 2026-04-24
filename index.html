@@ -1016,11 +1016,18 @@ const ENTRY_TARGET = "entry.1263638350";
     formData.append(ENTRY_TARGET, target);
 
     // Send to Google Form silently (no-cors)
-    fetch(GOOGLE_FORM_ACTION, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: formData
-    }).catch(() => {}); // no-cors means no readable response — this is expected
+    const params = new URLSearchParams();
+params.append(ENTRY_NAME, name);
+params.append(ENTRY_EMAIL, email);
+params.append(ENTRY_PHONE, phone);
+params.append(ENTRY_CITY, city);
+params.append(ENTRY_TARGET, target);
+params.append('submit', 'Submit');
+
+fetch(GOOGLE_FORM_ACTION + '?' + params.toString(), {
+  method: 'GET',
+  mode: 'no-cors',
+}).catch(() => {}); // no-cors means no readable response — this is expected
 
     // Show success
     document.getElementById('regForm').style.display = 'none';
