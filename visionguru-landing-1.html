@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VisionGuru MBA Masterclass – 24th May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --dark: #0A0A0A;
+    --dark2: #111111;
+    --dark3: #1A1A1A;
+    --cream: #F5EDD8;
+    --cream2: #EDE0C4;
+    --text: #E8E0D0;
+    --muted: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* COUNTDOWN TICKER */
+  .ticker {
+    background: var(--gold);
+    color: var(--dark);
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 10;
+  }
+
+  .ticker span { font-weight: 800; }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .logo span { color: var(--text); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 10px 24px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    align-items: center;
+    gap: 60px;
+    padding: 80px 60px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--gold);
+    padding: 6px 14px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 4.5vw, 64px);
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #AAA;
+    max-width: 540px;
+    margin-bottom: 36px;
+    font-weight: 300;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .meta-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .meta-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* REGISTRATION CARD */
+  .reg-card {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 40px 36px;
+    position: relative;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .reg-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+
+  .price-tag {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .price-symbol {
+    font-size: 28px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .price-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+  }
+
+  .reg-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: var(--cream);
+  }
+
+  .form-group {
+    margin-bottom: 14px;
+  }
+
+  .form-group input, .form-group select {
+    width: 100%;
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text);
+    padding: 13px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 2px;
+  }
+
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--gold);
+  }
+
+  .form-group input::placeholder { color: #555; }
+
+  .form-group select option { background: var(--dark3); }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+  }
+
+  .submit-btn:hover::after { width: 300px; height: 300px; }
+  .submit-btn:hover { background: var(--gold-light); }
+
+  .seats-bar {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .bar-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 2px;
+    margin: 8px 0 6px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    width: 74%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 2px;
+    animation: fillBar 1.5s 0.8s ease both;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+
+  @keyframes fillBar {
+    to { transform: scaleX(1); }
+  }
+
+  .seats-text { display: flex; justify-content: space-between; }
+
+  /* WHY FAIL */
+  .section {
+    padding: 100px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 44px);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 60px;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .reason-card {
+    background: var(--dark2);
+    padding: 36px 32px;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .reason-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .reason-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .reason-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .reason-desc { font-size: 14px; color: #888; line-height: 1.7; }
+
+  /* AGENDA */
+  .agenda-section { background: var(--dark2); }
+
+  .agenda-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .agenda-list { display: flex; flex-direction: column; gap: 0; }
+
+  .agenda-item {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: padding-left 0.3s;
+  }
+
+  .agenda-item:hover { padding-left: 8px; }
+
+  .agenda-time {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 1px;
+    min-width: 60px;
+    padding-top: 2px;
+  }
+
+  .agenda-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .agenda-content p { font-size: 13px; color: #777; line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial {
+    background: var(--dark2);
+    padding: 32px 28px;
+    border-left: 3px solid var(--gold);
+    position: relative;
+  }
+
+  .testimonial::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: rgba(201,168,76,0.1);
+    position: absolute;
+    top: 10px; right: 20px;
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #BBB;
+    margin-bottom: 20px;
+  }
+
+  .testimonial-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .testimonial-detail { font-size: 12px; color: #666; margin-top: 2px; }
+
+  /* FACULTY */
+  .faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .faculty-card {
+    text-align: center;
+    padding: 32px 20px;
+    background: var(--dark2);
+    transition: transform 0.3s;
+  }
+
+  .faculty-card:hover { transform: translateY(-6px); }
+
+  .faculty-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, var(--gold), #7A5C1E);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--dark);
+    border: 2px solid rgba(201,168,76,0.3);
+  }
+
+  .faculty-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .faculty-role { font-size: 12px; color: var(--gold); letter-spacing: 1px; margin-bottom: 8px; }
+  .faculty-desc { font-size: 13px; color: #777; line-height: 1.6; }
+
+  /* FINAL CTA */
+  .final-cta {
+    padding: 100px 60px;
+    text-align: center;
+    position: relative;
+    background: var(--dark2);
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 65%);
+  }
+
+  .final-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 900;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .final-cta h2 em { font-style: italic; color: var(--gold); }
+
+  .final-cta p {
+    font-size: 17px;
+    color: #888;
+    max-width: 500px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .cta-big {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    padding: 18px 52px;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .cta-big:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.25);
+  }
+
+  .cta-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #555;
+    position: relative;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 30px 60px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #555;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 40px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* SUCCESS MESSAGE */
+  .success-msg {
+    display: none;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold);
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--gold);
+    margin-top: 16px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .hero { grid-template-columns: 1fr; padding: 40px 24px; min-height: auto; }
+    .hero::after { display: none; }
+    .section { padding: 60px 24px; }
+    .reasons-grid { grid-template-columns: 1fr; gap: 2px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .faculty-grid { grid-template-columns: 1fr 1fr; }
+    .agenda-grid { grid-template-columns: 1fr; gap: 40px; }
+    footer { flex-direction: column; gap: 10px; text-align: center; }
+    .final-cta { padding: 60px 24px; }
+    .hero-stats { flex-wrap: wrap; gap: 24px; }
+    .hero-meta { flex-wrap: wrap; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  🔴 LIVE REGISTRATION OPEN &nbsp;|&nbsp; Only <span id="seats-left">127</span> seats remaining &nbsp;|&nbsp; Closes 24th May 2026
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Vision<span>Guru</span></div>
+  <a href="#register" class="nav-cta">Register – ₹51</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Live Masterclass &nbsp;·&nbsp; 24th May 2026</div>
+    <h1>Why <em>90% of MBA</em><br>Aspirants Get Rejected<br>— and How You Won't</h1>
+    <p class="hero-sub">India's top counselors reveal the exact admission roadmap that gets students into top B-schools — covering strategy, SOPs, scholarships, loans, and placement.</p>
+
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Date</span>
+        <span class="meta-value">24th May 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Time</span>
+        <span class="meta-value">12:00 PM IST</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Mode</span>
+        <span class="meta-value">Live Online</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Entry</span>
+        <span class="meta-value" style="color:var(--gold)">₹51 Only</span>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">10,000+</div>
+        <div class="stat-label">Students Mentored</div>
+      </div>
+      <div>
+        <div class="stat-num">₹3Cr+</div>
+        <div class="stat-label">Scholarships Secured</div>
+      </div>
+      <div>
+        <div class="stat-num">500</div>
+        <div class="stat-label">Total Seats</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGISTRATION FORM -->
+  <div class="reg-card" id="register">
+    <div class="price-tag">
+      <span class="price-symbol">₹</span>
+      <span class="price-amount">51</span>
+    </div>
+    <p class="price-note">One-time registration fee &nbsp;·&nbsp; Less than a cup of coffee</p>
+    <h3>Reserve Your Seat Now</h3>
+
+    <form id="regForm" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <input type="text" id="fname" placeholder="Full Name *" required>
+      </div>
+      <div class="form-group">
+        <input type="email" id="femail" placeholder="Email Address *" required>
+      </div>
+      <div class="form-group">
+        <input type="tel" id="fphone" placeholder="WhatsApp Number *" required maxlength="10" pattern="[0-9]{10}">
+      </div>
+      <div class="form-group">
+        <select id="fcity" required>
+          <option value="" disabled selected>Select Your City</option>
+          <option>Mumbai</option>
+          <option>Delhi</option>
+          <option>Bangalore</option>
+          <option>Hyderabad</option>
+          <option>Chennai</option>
+          <option>Pune</option>
+          <option>Kolkata</option>
+          <option>Indore</option>
+          <option>Patna</option>
+          <option>Ahmedabad</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select id="ftarget" required>
+          <option value="" disabled selected>Target Exam</option>
+          <option>CAT</option>
+          <option>MAT</option>
+          <option>XAT</option>
+          <option>GMAT</option>
+          <option>CMAT</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <button type="submit" class="submit-btn">Secure My Seat →</button>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      ✅ You're registered! Check your email for confirmation.
+    </div>
+
+    <div class="seats-bar">
+      <div class="seats-text">
+        <span>Seats filled</span>
+        <span style="color:var(--gold); font-weight:600">373 / 500</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill"></div></div>
+      <span>Only 127 seats left — first come, first served</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY FAIL -->
+<section class="section fade-in">
+  <div class="section-tag">The Hard Truth</div>
+  <div class="section-title">The 5 Real Reasons<br>MBA Applications <em>Fail</em></div>
+  <div class="divider"></div>
+
+  <div class="reasons-grid">
+    <div class="reason-card">
+      <div class="reason-num">01</div>
+      <div class="reason-title">Score Focus Over Profile</div>
+      <p class="reason-desc">Most aspirants obsess over percentile and ignore the 60% of the decision that happens during profile evaluation.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">02</div>
+      <div class="reason-title">Wrong College Shortlisting</div>
+      <p class="reason-desc">Applying to the wrong colleges wastes your best application cycles. Shortlisting is a science, not guesswork.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">03</div>
+      <div class="reason-title">Weak SOP & LOR</div>
+      <p class="reason-desc">A generic SOP is an instant rejection. Committees read thousands — yours needs a story that demands attention.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">04</div>
+      <div class="reason-title">No Interview Strategy</div>
+      <p class="reason-desc">PI rounds expose underprepared candidates in the first 5 minutes. Most never know what questions to anticipate.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">05</div>
+      <div class="reason-title">Zero Financial Plan</div>
+      <p class="reason-desc">₹2L+ scholarships go unclaimed every year because students don't know where to look or how to apply.</p>
+    </div>
+    <div class="reason-card" style="background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.2);">
+      <div class="reason-num" style="color: rgba(201,168,76,0.5)">→</div>
+      <div class="reason-title" style="color: var(--gold)">This Masterclass Fixes All 5</div>
+      <p class="reason-desc">In 2.5 hours, top counselors walk you through each solution — with frameworks you can use the very next day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="section agenda-section fade-in">
+  <div class="agenda-grid">
+    <div>
+      <div class="section-tag">What's Inside</div>
+      <div class="section-title">The <em>Masterclass</em><br>Agenda</div>
+      <div class="divider"></div>
+      <p style="color:#777; font-size:15px; line-height:1.8; max-width:400px">2.5 hours of high-density, no-fluff content from India's most trusted MBA guidance team. Every minute is designed to move you closer to your dream B-school.</p>
+
+      <div style="margin-top:40px; padding:24px; background:var(--dark3); border-left:3px solid var(--gold);">
+        <div style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:12px">Includes Live Q&A</div>
+        <p style="font-size:14px; color:#888; line-height:1.7">Ask India's top counselors your specific questions directly. No pre-screened softballs — real answers to your real problems.</p>
+      </div>
+    </div>
+
+    <div class="agenda-list">
+      <div class="agenda-item">
+        <div class="agenda-time">00:00</div>
+        <div class="agenda-content">
+          <h4>Opening — The Reality Check</h4>
+          <p>Why most aspirants are unknowingly sabotaging their own chances — and how today changes that.</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">00:10</div>
+        <div class="agenda-content">
+          <h4>The Diagnosis — 5 Root Causes of Rejection</h4>
+          <p>Live polls + breakdown of where applicants actually lose. See exactly where you stand.</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">00:30</div>
+        <div class="agenda-content">
+          <h4>The Admission Roadmap — Step by Step</h4>
+          <p>Exam strategy → Profile building → College shortlisting → Application → GD/PI. The full picture.</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">01:00</div>
+        <div class="agenda-content">
+          <h4>Insider Secrets from Admission Committees</h4>
+          <p>What top B-schools ACTUALLY look for — things no prep course tells you.</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">01:20</div>
+        <div class="agenda-content">
+          <h4>Scholarships, Loans & Financial Strategy</h4>
+          <p>Step-by-step guide to funding your MBA — including ₹2L+ opportunities most students miss.</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">01:35</div>
+        <div class="agenda-content">
+          <h4>Live Q&A — Your Questions Answered</h4>
+          <p>No time limits. Ask everything. Get answers that are specific to your situation.</p>
+        </div>
+      </div>
+      <div class="agenda-item" style="border-bottom:none">
+        <div class="agenda-time">01:55</div>
+        <div class="agenda-content">
+          <h4>Placement & Career Strategy Post-MBA</h4>
+          <p>How to maximise your ROI from the MBA — from Day 1 to your first offer letter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section fade-in">
+  <div class="section-tag">From Past Attendees</div>
+  <div class="section-title">They Came. They Applied.<br><em>They Got In.</em></div>
+  <div class="divider"></div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <p class="testimonial-text">Got placed at Deloitte right after following the career roadmap from this exact session. The placement strategy segment alone was worth 100x the ₹51.</p>
+      <div class="testimonial-author">Arjun Mehta</div>
+      <div class="testimonial-detail">MBA Graduate, Deloitte — Mumbai</div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">Found a ₹2 lakh scholarship I had absolutely no idea existed. The financial planning module was a complete eye-opener for my family and me.</p>
+      <div class="testimonial-author">Priya Sharma</div>
+      <div class="testimonial-detail">PGDM Student — Bangalore</div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">My PI preparation changed completely after this session. I walked into my interviews with real confidence — and got calls from 3 top colleges.</p>
+      <div class="testimonial-author">Rohit Agarwal</div>
+      <div class="testimonial-detail">IIM Aspirant — Delhi</div>
+    </div>
+  </div>
+</section>
+
+<!-- FACULTY -->
+<section class="section fade-in" style="background:var(--dark2);">
+  <div style="text-align:center; margin-bottom:60px;">
+    <div class="section-tag">Your Mentors</div>
+    <div class="section-title">Meet the <em>Expert Panel</em></div>
+    <div class="divider" style="margin: 0 auto 0;"></div>
+  </div>
+
+  <div class="faculty-grid">
+    <div class="faculty-card">
+      <div class="faculty-avatar">RV</div>
+      <div class="faculty-name">Rajesh Verma</div>
+      <div class="faculty-role">Lead Admissions Counselor</div>
+      <p class="faculty-desc">15 years guiding 3,000+ students into IIMs, ISB, and top B-schools across India.</p>
+    </div>
+    <div class="faculty-card">
+      <div class="faculty-avatar">AN</div>
+      <div class="faculty-name">Anita Nair</div>
+      <div class="faculty-role">SOP & Interview Expert</div>
+      <p class="faculty-desc">Former admissions panelist. Has reviewed 5,000+ application essays and SOPs.</p>
+    </div>
+    <div class="faculty-card">
+      <div class="faculty-avatar">SK</div>
+      <div class="faculty-name">Suresh Kumar</div>
+      <div class="faculty-role">Finance & Scholarship Head</div>
+      <p class="faculty-desc">Helped students unlock ₹3Cr+ in scholarships. Education loan specialist.</p>
+    </div>
+    <div class="faculty-card">
+      <div class="faculty-avatar">PM</div>
+      <div class="faculty-name">Pooja Mathur</div>
+      <div class="faculty-role">Career Strategy Lead</div>
+      <p class="faculty-desc">Ex-campus recruiter at Big 4. Placement strategy expert for post-MBA careers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta fade-in">
+  <h2>Your Dream B-School<br>is <em>Closer Than You Think</em></h2>
+  <p>One decision. One session. One roadmap. Don't be the person who saw this and scrolled past.</p>
+  <a href="#register" class="cta-big">Reserve My ₹51 Seat →</a>
+  <p class="cta-note">24th May 2026 &nbsp;·&nbsp; 12:00 PM IST &nbsp;·&nbsp; Only 127 seats left</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo" style="font-size:18px">Vision<span>Guru</span></div>
+  <div>India's trusted MBA guidance partner &nbsp;·&nbsp; 10,000+ students mentored</div>
+  <div>Questions? WhatsApp us at +91 XXXXX XXXXX</div>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Form submit handler
+  // IMPORTANT: Replace the Google Form URL below with your actual Google Form prefilled URL
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('fname').value;
+    const email = document.getElementById('femail').value;
+    const phone = document.getElementById('fphone').value;
+    const city = document.getElementById('fcity').value;
+    const target = document.getElementById('ftarget').value;
+
+    // ============================================================
+    // REPLACE THIS URL WITH YOUR GOOGLE FORM PREFILLED SUBMIT URL
+    // How to get it: In your Google Form → ⋮ → Get pre-filled link
+    // Then swap the field entry IDs below
+    // ============================================================
+    const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse";
+    const ENTRY_NAME   = "entry.000000001"; // Replace with your field ID
+    const ENTRY_EMAIL  = "entry.000000002";
+    const ENTRY_PHONE  = "entry.000000003";
+    const ENTRY_CITY   = "entry.000000004";
+    const ENTRY_TARGET = "entry.000000005";
+
+    const formData = new FormData();
+    formData.append(ENTRY_NAME,   name);
+    formData.append(ENTRY_EMAIL,  email);
+    formData.append(ENTRY_PHONE,  phone);
+    formData.append(ENTRY_CITY,   city);
+    formData.append(ENTRY_TARGET, target);
+
+    // Send to Google Form silently (no-cors)
+    fetch(GOOGLE_FORM_ACTION, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    }).catch(() => {}); // no-cors means no readable response — this is expected
+
+    // Show success
+    document.getElementById('regForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+
+    // Update seat counter
+    const seatsEl = document.getElementById('seats-left');
+    const current = parseInt(seatsEl.textContent);
+    if (current > 0) seatsEl.textContent = current - 1;
+
+    // Redirect to Razorpay / Instamojo payment page after 1.5s
+    // REPLACE THIS URL with your actual ₹51 payment link
+    setTimeout(() => {
+      window.location.href = "https://rzp.io/l/YOUR_PAYMENT_LINK"; // ← Replace this
+    }, 1500);
+  }
+</script>
+</body>
+</html>
